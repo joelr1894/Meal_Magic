@@ -28,7 +28,6 @@ def import_function():
 	for i in rest_dict.keys():
 		rest_list[i+1] = str(rest_dict[i])
 
-	print rest_list
 	rating_csv = [rest_list]
 
 	rate_query = ("SELECT * from ratings")
@@ -44,10 +43,8 @@ def import_function():
 		user_rating_list[0] = str(user_dict[user])
 		for rating_pair in rate_dict[user]:
 			user_rating_list[rating_pair[0]+1] = rating_pair[1]
-		print user_rating_list
 		rating_csv.append(user_rating_list)	
 		
-	print rating_csv
 	return rating_csv
 
 def readCSVFile(filename):
@@ -236,7 +233,8 @@ def main():
 		output[k] = []
 		for i in recommendation[k][0]:
 			output[k].append(restaurants[i])
-	print_out(recommendation, neighbors, output, inputs) 
+	print_out(recommendation, neighbors, output, inputs)
+	print critics[inputs[0]][1] 
 
 	# Testing for inf bug
 	# print critics['Dan Haroun'][3]['Matt Schulman']
