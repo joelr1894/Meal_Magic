@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- info about page (meta, i.e. title on tab, etc) -->
+    <title>Meal Magic</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- style page for fonts (different languages, etc) -->  
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body background="http://i65.tinypic.com/2guy69w.jpg">
+    <header class="container">
+            <div class="row">
+            <center> 
+                <a href="http://tinypic.com?ref=ebcwaw" target="_blank"><img src="http://i63.tinypic.com/ebcwaw.png" border="0" alt="Image and video hosting by TinyPic" align="center" height="100" width="400"></a>
+            </center>
+            </div>
+    </header>
+
+<style>
+    ul#menu { padding: 0px;}
+    ul#menu li {display: inline;
+        }
+    ul#menu li a {
+            background-color: none;
+            color: black;
+            padding: 10px;
+            text-decoration: none;
+            margin-left: 5px;
+            margin-right: 5px;}
+    ul#menu li a:hover {
+            background-color: #B6B6B4;
+            border-radius: 10px;}
+    ul#menu li a:active {
+            background-color: #FFFFFF;}
+</style>
+
+<!-- below sets up style for intro box with "about us" -->  
+<style>
+    div#intro { padding: 10px; border: 5px; border-color: black}
+    div#intro p {
+            background-color: none;
+            color: black;
+            padding: 0px;
+            text-decoration: none;}
+    div#intro li a:hover {
+            background-color: #B6B6B4;}
+    div#intro li a:active {
+            background-color: #FFFFFF;}
+</style>
+
+<div>
+    <ul id="menu" style="list-style-type:none" >
+        <center>
+                <li>
+                    <a href="home">Home</a>
+                    </li>
+                    <li>
+                    <a href="initialSurvey">Initial Survey</a>
+                    </li>
+                    <li>
+                    <a href="recommend_pg">Recommendations</a>
+                    </li>
+                    <li>
+                    <a href="aboutUs">About Us</a>
+                    </li>
+        </center>
+    </ul>
+</div>
+
+<center>
+<div class="container" style='background-color: rgba(255,255,255,.8); width: 80%; border-radius: 20px; margin: 10px;'>
+<center>
+    <h2 style='color:black'>Generate your recommendations</h2>
+    <br>
+            <div style="background-color: rgb(96,125,139); width:60%; !important" class="jumbotron" style='width:60%;'>
+                    <p style='color:black'><strong>Please input your information here:</strong></p>
+                    <form class="form-signin">
+                        <label for="inputName" class="sr-only">Name</label>
+                        <input type="name" name="inputName" id="inputName" class="form-control" placeholder="Name" required autofocus>
+                        <label for="inputNum" class="sr-only">Password</label>
+                        <input type="number" name="inputNum" id="inputNum" class="form-control" placeholder="Number of Recommendations" required>
+                        <a id='resetme' style='color:lightgrey; font-size:11px;'>Click here to reset sign-in information</a>
+                        <br>
+                        <br>
+                        <button id="genButton" class="btn btn-lg btn-primary btn-block" type="button" style='background-color:lightgrey; border:transparent; color: black; width:50%; font-size: 1.25vw;'>Get Recommendations</button>
+                        <br>
+                                <div style='width: 100%; border: 2px white; background-color: rgb(255,255,255); height:150px; border-radius:10px;'>
+                                    <p style='padding:5px; font-size: 16px;'><strong>Your restaurant recommendations are:</strong></p>
+                                        <div style="height:90px; width:100% ; overflow:auto;">
+                                        <p id='recfinal' style='font-size: 15px;'> </p>
+                                        </div>
+                                </div>
+                    </form>
+            </div>
+</center>
+</div>
+</center>
+
+<footer class="container">
+    <div class="row">
+        <center><br>
+         <a class="btn btn-contact" href="mailto:goldmana@seas.upenn.edu?Subject=Meal%20Magic" target="_top" role="button">Contact Us</a>
+        <br>
+        <p> &copy; 2016 Goldman, Haroun, Reubenstein</p>
+        </center>
+                
+<script>
+        $(function() {
+            $('#genButton').click(function() {
+            
+                formdata=$('form').serializeArray()
+                if (formdata[0].value === "" || formdata[1].value === "") {
+                    alert("Please fill in all the required fields.")
+                        }
+                
+                    $.ajax({
+                            url: '/recommendation_gen',
+                            data: $('form').serialize(),
+                            type: 'POST',
+                            success: function(response) {
+                                    //format data from list below; parse!
+                                    //data is coming into console in web browser but need to figure out how to parse and output in #recfinal
+                                    x = jQuery.parseJSON(response)
+                                    console.log(x);
+                                    outp=''
+                                    if (x != null) {
+                                        len = x.length;
+                                        console.log(len);
+                                        for (i = 0; i < len; i++) {
+                                            if (i < (len-1)) {
+                                                outp += x[i][0] + " with a rating of " + x[i][1] + ", <br>"; }
+                                            else  {
+                                                outp += "and " + x[i][0] + " with a rating of " + x[i][1] + "."; }
+                                        }
+                                        $("#recfinal").html(outp);
+                                        console.log(outp);
+                                        console.log(x);
+                                    }
+                                    else if (x == null) {
+                                        err='There was an error, please check your sign-in information and try again!';
+                                        $("#recfinal").html(err);
+                                        $('#recfinal').css('color', 'red');
+                                    }
+
+                            },
+                            error: function(error) {
+                                console.log(error);
+                            }
+                    });
+                });
+        }); 
+</script>
+
+<script>
+$(document).ready(function(){
+    $("#resetme").click(function(){
+        location.reload();
+    });
+});
+
+</script>           
+
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Python Flask Bucket List App</title>
+ 
+    
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/signup.css" rel="stylesheet">
+    
+  </head>
+ 
+  <body>
+ 
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" ><a href="main">Home</a></li>
+            <li role="presentation"><a href="#">Sign In</a></li>
+            <li role="presentation" class="active"><a href="#">Sign Up</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Meal Magic Recommender</h3>
+      </div>
+ 
+      <div class="jumbotron">
+        <h3>Get recommendations here</h3>
+        <form class="form-signin">
+        <label for="inputName" class="sr-only">Name</label>
+        <input type="name" name="inputName" id="inputName" class="form-control" placeholder="Name" required autofocus>
+        <label for="RecNumInput" class="sr-only">Password</label>
+        <input type="password" name="RecNumInput" id="RecNumInput" class="form-control" placeholder="Number of Recommendations" required>
+         
+        <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">Get Recommendations</button>
+      </form>
+      </div>
+ 
+       
+ 
+      <footer class="footer">
+             <center><p>&copy; 2016 Goldman, Haroun, Reubenstein</p></center>
+       </footer>
+ 
+    </div>
+  </body>
+</html>

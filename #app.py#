@@ -1,0 +1,42 @@
+
+from flask import Flask, render_template, request, json
+app = Flask(__name__)
+
+@app.route('/')
+def Hello():
+    return render_template('homepage.html')
+
+@app.route('/recommend')
+def recommend():
+    return render_template('Recommendations_page.html')
+
+# request code
+
+@app.route('/recommendation',methods=['POST'])
+def recommendation():
+ 
+    # read the posted values from the UI
+    _name = request.form['inputName']
+    _inpNum = request.form['inputNum']
+ 
+    # validate the received values
+    #parse 
+    if _name and _inpNum :
+        return json.dumps({'html':'<span>' + _name + ' ' +  _inpNum + '</span>'})
+    else:
+        return json.dumps({'html':'<span> </span>'})
+ 
+@app.route('/initialSurvey')
+def initialSurvey():
+    return render_template('InitialSurvey.html')
+
+@app.route('/home')
+def home():
+    return render_template('homepage.html')
+
+@app.route('/aboutUs')
+def aboutUs():
+    return render_template('AboutUs_Success.html')
+
+if __name__ == "__main__":
+    app.run()
