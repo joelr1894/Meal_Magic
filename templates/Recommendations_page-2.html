@@ -20,7 +20,7 @@
     <header class="container">
             <div class="row">
             <center> 
-                <a href="http://tinypic.com?ref=ebcwaw" target="_blank"><img src="http://i63.tinypic.com/ebcwaw.png" border="0" alt="Image and video hosting by TinyPic" align="center" height="100" width="400"></a>
+                <a href="home"><img src="http://i63.tinypic.com/ebcwaw.png" border="0" align="center" height="100" width="400"></a>
             </center>
             </div>
     </header>
@@ -82,12 +82,13 @@
     <h2 style='color:black'>Generate your recommendations</h2>
     <br>
             <div style="background-color: rgb(96,125,139); width:60%; !important" class="jumbotron" style='width:60%;'>
-                    <p style='color:black'><strong>Please input your information here:</strong></p>
+                    <!-- <p style='color:black'><strong>Please input your information here:</strong></p> -->
                     <form class="form-signin">
                         <label for="inputName" class="sr-only">Name</label>
+                        <p  style='font-size: 16px; font-weight: bold; color: black;' >Input your name  and desired number of recommendations here:</p>
                         <input type="name" name="inputName" id="inputName" class="form-control" placeholder="Name" required autofocus>
-                        <label for="inputNum" class="sr-only">Password</label>
-                        <input type="number" name="inputNum" id="inputNum" class="form-control" placeholder="Number of Recommendations" required>
+                        <label for="inputNum" class="sr-only">Number</label>
+                        <input type="number" name="inputNum" id="inputNum" class="form-control" placeholder="Number of Recommendations (between 1 and 5)" min="1" max="5" text-align='center' required>
                         <a id='resetme' style='color:lightgrey; font-size:11px;'>Click here to reset sign-in information</a>
                         <br>
                         <br>

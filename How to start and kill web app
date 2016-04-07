@@ -1,0 +1,47 @@
+Last login: Sun Apr  3 16:44:30 on ttys000
+hnt:~ joelre$ ssh -i Meal_Magic.pem ec2-user@ec2-54-201-28-29.us-west-2.compute.amazonaws.com
+Warning: Identity file Meal_Magic.pem not accessible: No such file or directory.
+
+Permission denied (publickey).
+hnt:~ joelre$ 
+hnt:~ joelre$ cd Documents/Senior_Design_repo/
+hnt:Senior_Design_repo joelre$ ssh -i Meal_Magic.pem ec2-user@ec2-54-201-28-29.us-west-2.compute.amazonaws.com
+Last login: Sun Apr  3 20:44:43 2016 from hnt.1529.wlanwireless-pennnet.upenn.edu
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2016.03-release-notes/
+[ec2-user@ip-172-31-34-107 ~]$ cd Meal_Magic/
+[ec2-user@ip-172-31-34-107 Meal_Magic]$ python app_final.py 
+Traceback (most recent call last):
+  File "app_final.py", line 344, in <module>
+    app.run(host="0.0.0.0", port=5000)
+  File "/usr/local/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 772, in run
+    run_simple(host, port, self, **options)
+  File "/usr/local/lib/python2.7/site-packages/Werkzeug-0.11.5-py2.7.egg/werkzeug/serving.py", line 694, in run_simple
+    inner()
+  File "/usr/local/lib/python2.7/site-packages/Werkzeug-0.11.5-py2.7.egg/werkzeug/serving.py", line 656, in inner
+    fd=fd)
+  File "/usr/local/lib/python2.7/site-packages/Werkzeug-0.11.5-py2.7.egg/werkzeug/serving.py", line 550, in make_server
+    passthrough_errors, ssl_context, fd=fd)
+  File "/usr/local/lib/python2.7/site-packages/Werkzeug-0.11.5-py2.7.egg/werkzeug/serving.py", line 464, in __init__
+    HTTPServer.__init__(self, (host, int(port)), handler)
+  File "/usr/lib64/python2.7/SocketServer.py", line 420, in __init__
+    self.server_bind()
+  File "/usr/lib64/python2.7/BaseHTTPServer.py", line 108, in server_bind
+    SocketServer.TCPServer.server_bind(self)
+  File "/usr/lib64/python2.7/SocketServer.py", line 434, in server_bind
+    self.socket.bind(self.server_address)
+  File "/usr/lib64/python2.7/socket.py", line 228, in meth
+    return getattr(self._sock,name)(*args)
+socket.error: [Errno 98] Address already in use
+[ec2-user@ip-172-31-34-107 Meal_Magic]$ ps -fA | grep python
+ec2-user 25487     1  0 20:45 ?        00:00:00 python app_final.py
+ec2-user 25520 25495  0 20:46 pts/0    00:00:00 grep --color=auto python
+[ec2-user@ip-172-31-34-107 Meal_Magic]$ kill 25487
+[ec2-user@ip-172-31-34-107 Meal_Magic]$ nohup python app_final.py &
+[1] 25521
+[ec2-user@ip-172-31-34-107 Meal_Magic]$ nohup: ignoring input and appending output to ‘nohup.out’
+
